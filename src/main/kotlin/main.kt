@@ -5,7 +5,7 @@ fun main() {
 
     val previousTransactions = 0
 
-    val cardType = "Maestro"
+    val cardType = "Vk Pay"
 
     val amount = 100
 
