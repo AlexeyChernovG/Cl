@@ -1,25 +1,26 @@
 fun main() {
 
-    val previousTransactions = 75000
+    val previousTransactions = 0
 
     val cardType = "Vk Pay"
 
-    val amount = 400
+    val amount = 100
 
-    println("Сумма перевода: " + amount + " р.")
-    println("Сумма комиссии: " + comissionType(previousTransactions, cardType, amount) + " р.")
-
+// Данный условный оператор проверяет корректность выбранного банка, если банк неверный, программа сообщает об этом
+    if (comissionType(previousTransactions, cardType, amount) >= 0.0) {
+        println("Сумма перевода: " + amount + " р. ")
+        println("Сумма комиссии: " + comissionType(previousTransactions, cardType, amount) + " р.") } else
+            println("Такого банка нет")
 }
+
 // Данная функция определяет и возвращает комиссию в зависимости от типа карты
-fun comissionType(previousTransactions: Int, cardType: String, amount: Int): Double {
-    var comission = 0.0
-    when (cardType) {
-        "Vk Pay" -> comission = 0.0
-        "MasterCard and Maestro" -> if (amount + previousTransactions !in 300..75000) comission = amount * 0.06 + 20
-        "Visa and Mir" -> comission = amount * 0.075 + 20
+fun comissionType(previousTransactions: Int, cardType: String, amount: Int) = when (cardType) {
+        "Vk Pay" -> 0.0
+        "MasterCard" -> if (amount + previousTransactions !in 300..75000)
+            amount * 0.06 + 20 else 0.0
+        "Maestro" -> if (amount + previousTransactions !in 300..75000)
+            amount * 0.06 + 20 else 0.0
+        "Visa" -> if (amount > 200) amount * 0.075 + 20 else 35.0
+        "Mir" -> if (amount > 200) amount * 0.075 + 20 else 35.0
+        else -> -0.1
     }
-    when (cardType) {
-        "Visa and Mir" -> if (comission < 35) comission = 35.0
-    }
-    return comission
-}
