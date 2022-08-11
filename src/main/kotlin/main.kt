@@ -1,13 +1,16 @@
+const val WRONG_CARD = -0.1
+
+
 fun main() {
 
     val previousTransactions = 0
 
-    val cardType = "Vk Pay"
+    val cardType = "Maestro"
 
     val amount = 100
 
 // Данный условный оператор проверяет корректность выбранного банка, если банк неверный, программа сообщает об этом
-    if (comissionType(previousTransactions, cardType, amount) >= 0.0) {
+    if (comissionType(previousTransactions, cardType, amount) > WRONG_CARD) {
         println("Сумма перевода: " + amount + " р. ")
         println("Сумма комиссии: " + comissionType(previousTransactions, cardType, amount) + " р.") } else
             println("Такого банка нет")
@@ -22,5 +25,5 @@ fun comissionType(previousTransactions: Int, cardType: String, amount: Int) = wh
             amount * 0.06 + 20 else 0.0
         "Visa" -> if (amount > 200) amount * 0.075 + 20 else 35.0
         "Mir" -> if (amount > 200) amount * 0.075 + 20 else 35.0
-        else -> -0.1
+        else -> WRONG_CARD
     }
