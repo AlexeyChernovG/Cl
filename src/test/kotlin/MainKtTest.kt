@@ -126,7 +126,7 @@ class MainKtTest {
 
         val result = comissionType(previousTransactions, cardType, amount)
 
-        assertEquals(0.0, result, 0.0001)
+        assertEquals(50.0, result, 0.0001)
 
     }
 
